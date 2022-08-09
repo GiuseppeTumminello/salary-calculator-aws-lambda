@@ -2,8 +2,7 @@ import uuid
 
 import boto3
 
-session = boto3.Session(profile_name='Sandbox_Full-Administrator', region_name='us-east-1')
-DYNAMODB = session.client('dynamodb')
+DYNAMODB = boto3.client('dynamodb')
 DESCRIPTION = 'Annual gross'
 TABLE_NAME = 'annual_gross'
 
