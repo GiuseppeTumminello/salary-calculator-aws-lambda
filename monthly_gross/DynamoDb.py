@@ -4,7 +4,7 @@ import boto3
 
 DYNAMODB = boto3.client('dynamodb')
 DESCRIPTION = 'Monthly gross'
-TABLE_NAME = 'monthly-gross'
+TABLE_NAME = 'monthly_gross'
 
 
 def save_data(monthly_gross):

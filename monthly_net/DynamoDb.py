@@ -3,7 +3,7 @@ import boto3
 
 DYNAMODB = boto3.client('dynamodb')
 DESCRIPTION = 'Monthly net'
-TABLE_NAME = 'monthly-net'
+TABLE_NAME = 'monthly_net'
 
 
 def save_data(monthly_net):

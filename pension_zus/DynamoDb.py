@@ -3,7 +3,7 @@ import boto3
 
 DYNAMODB = boto3.client('dynamodb')
 DESCRIPTION = 'Pension zus'
-TABLE_NAME = 'pension-zus'
+TABLE_NAME = 'pension_zus'
 
 
 def save_data(pension_zus):

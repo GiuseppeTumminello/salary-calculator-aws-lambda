@@ -3,7 +3,7 @@ import boto3
 
 DYNAMODB = boto3.client('dynamodb')
 DESCRIPTION = 'Total zus '
-TABLE_NAME = 'total-zus'
+TABLE_NAME = 'total_zus'
 
 
 def save_data(tax):
