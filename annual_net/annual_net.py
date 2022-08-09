@@ -1,7 +1,7 @@
 import uuid
 import boto3
 
-dynamodb = boto3.client('dynamodb')
+dynamodb = boto3.client('dynamodb', profile_name="Sandbox_Full-Administrator")
 total_zus_rate = 0.1371
 health_rate = 0.09
 annual_threshold = 120000
