@@ -1,17 +1,16 @@
 import json
-from annual_gross.AnnualGrossCalculation import AnnualGross
-from annual_gross.DynamoDb import DynamoDb
-from annual_gross.Sqs import Sqs
-
+import AnnualGrossCalculation
+import DynamoDb
+import Sqs
+import ast
 DESCRIPTION = 'Annual gross'
 
 
 def annual_gross_handler(event, context):
-    message = json.loads(Sqs.read_message_from_queue())
-    monthly_gross = message['amount']
-    annual_gross = AnnualGross.calculate_annual_gross(monthly_gross)
-    Sqs.send_message_to_queue(annual_gross)
+    message = ast.literal_eval(str(Sqs.read_message_from_queue()))
+    annual_gross = AnnualGrossCalculation.calculate_annual_gross(message['amount'])
+    Sqs.send_message_to_queue(json.dumps({DESCRIPTION: annual_gross, 'uuid': message['uuid']}))
     DynamoDb.save_data(annual_gross)
-    return {DESCRIPTION: annual_gross}
+    return json.dumps({DESCRIPTION: annual_gross})
 
 

@@ -2,14 +2,13 @@ import uuid
 
 import boto3
 
-session = boto3.Session(profile_name='Sandbox_Full-Administrator', region_name='us-east-1')
-DYNAMODB = session.client('dynamodb')
-DESCRIPTION = 'Annual gross'
-TABLE_NAME = 'annual_gross'
+dynamodb = boto3.client('dynamodb')
+description = 'Annual gross'
+table_name = 'annual_gross'
 
 
-class DynamoDb:
-    def save_data(self):
-        DYNAMODB.put_item(TableName=TABLE_NAME,
-                          Item={'id': {'S': str(uuid.uuid4())}, 'amount': {'N': str(self)},
-                                'description': {'S': DESCRIPTION}})
+
+def save_data(self):
+    dynamodb.put_item(TableName=table_name,
+    Item={'id': {'S': str(uuid.uuid4())}, 'amount': {'N': str(self)},
+                                'description': {'S': description}})
