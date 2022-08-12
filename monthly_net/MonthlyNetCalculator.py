@@ -7,11 +7,12 @@ MONTH = 12
 
 
 def calculate_total_zus(monthly_gross):
-    return monthly_gross - monthly_gross * TOTAL_ZUS_RATE
+    return monthly_gross - (monthly_gross * TOTAL_ZUS_RATE)
 
 
 def calculate_health(monthly_gross):
-    return calculate_total_zus(monthly_gross) - (calculate_total_zus(monthly_gross) * HEALTH_RATE)
+    total_zus = calculate_total_zus(monthly_gross)
+    return total_zus - (total_zus * HEALTH_RATE)
 
 
 def calculate_net(monthly_gross):

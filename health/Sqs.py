@@ -15,6 +15,7 @@ def read_message_from_queue():
         QueueUrl=RECEIVE_MESSAGE_QUEUE_URL, AttributeNames=['SentTimestamp'],
         MaxNumberOfMessages=1, MessageAttributeNames=['All'], VisibilityTimeout=0, WaitTimeSeconds=0
     )
+
     message = json.loads(response['Messages'][0]['Body'])
     message_to_delete = response['Messages'][0]
     receipt_handle = message_to_delete['ReceiptHandle']

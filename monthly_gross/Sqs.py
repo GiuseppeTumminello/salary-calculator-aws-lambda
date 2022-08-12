@@ -6,10 +6,6 @@ SEND_MESSAGE_QUEUE_URL = SQS.get_queue_url(QueueName='salary-calculator-orchestr
 RECEIVE_MESSAGE_QUEUE_URL = SQS.get_queue_url(QueueName='monthly-gross-queue').get('QueueUrl')
 
 
-def send_message_to_queue(message):
-    SQS.send_message(QueueUrl=SEND_MESSAGE_QUEUE_URL, MessageBody=str(message))
-
-
 def read_message_from_queue():
     response = SQS.receive_message(
         QueueUrl=RECEIVE_MESSAGE_QUEUE_URL, AttributeNames=['SentTimestamp'],

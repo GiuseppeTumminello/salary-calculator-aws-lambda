@@ -4,7 +4,7 @@ import boto3
 
 DYNAMODB = boto3.client('dynamodb')
 DESCRIPTION = 'Annual gross'
-TABLE_NAME = 'annual_gross'
+TABLE_NAME = 'annual_net'
 
 
 class DynamoDb:
