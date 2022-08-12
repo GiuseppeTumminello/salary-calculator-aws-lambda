@@ -1,16 +1,14 @@
 import json
-from DynamoDb import DynamoDb
-from AnnualNetCalculation import AnnualNetCalculation
-from Sqs import Sqs
-
+import AnnualNetCalculation
+import DynamoDb
+import Sqs
+import ast
 DESCRIPTION = 'Annual net'
 
 
 def annual_net_handler(event, context):
-    message = json.loads(Sqs.read_message_from_queue())
-    monthly_gross = message['amount']
-    annual_net = AnnualNetCalculation.calculate_total_zus(monthly_gross)
-    send_message = json.dumps({DESCRIPTION: annual_net})
-    Sqs.send_message_to_queue(send_message)
+    message = ast.literal_eval(str(Sqs.read_message_from_queue()))
+    annual_net = AnnualNetCalculation.calculate_annual_net(message['amount'])
+    Sqs.send_message_to_queue(json.dumps({DESCRIPTION: annual_net, 'uuid': message['uuid']}))
     DynamoDb.save_data(annual_net)
     return json.dumps({DESCRIPTION: annual_net})
